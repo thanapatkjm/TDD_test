@@ -2,7 +2,7 @@ from django.http.response import HttpResponse
 
 
 def HelloWorld(request):
-    return HttpResponse("<h1>This is </h1>")
+    return HttpResponse("<h1>Helloworld  </h1> <h5>HelloWorld</h5>")
 
 def Start(request):
-    return HttpResponse("<h1>This is Start</h1>")
+    return HttpResponse("<a href='http://127.0.0.1:8000/HelloWorld/'>HelloWorld</a>")

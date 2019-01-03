@@ -20,13 +20,10 @@ from django.urls import path
 from django.http.response import HttpResponse
 from . import views
 
-##def HelloWorld(request):
-##    return HttpResponse("<h1>This is KUY</h1>")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('HelloWorld/', views.HelloWorld),
+    path('start/', views.Start),
     # path('start/', Start),
 ]
-
-
