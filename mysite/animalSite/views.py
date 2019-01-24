@@ -7,7 +7,16 @@ from django.urls import reverse
 from .models import Animal, Description
 
 def test(request):
-    return render(request, 'testInput.html')
+    list_animal_name=Animal.objects.order_by("animal_name")
+    return render(request, 'testInput.html',{'list_animal_name': list_animal_name})
+
+def test_delete(request):
+    list_animal_name=Animal.objects.order_by("animal_name")
+    return render(request, 'radioDelete.html', {'list_animal_name': list_animal_name})
+
+def deleting(request):
+    Animal.objects.get(pk=request.POST['radio']).delete()
+    return HttpResponseRedirect(reverse('animal:test'))
 
 def index(request):
     list_animal_name=Animal.objects.order_by("animal_name")

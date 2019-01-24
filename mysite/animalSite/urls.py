@@ -12,6 +12,8 @@ urlpatterns = [
     path('<int:page_number>/detail/',views.detail, name='detail'),
     path('<int:page_number>/page/', views.page, name='page'),
     path('test/', views.test, name='test'),
+    path('test_de/', views.test_delete, name='test_delete'),
+    path('deleting/', views.deleting, name='deleting'),
 ]
     # {% for name in latest_animal_name %}
     #     <li><a href="/animalSite/{{ Animal.id }}/">{{ name.animal_name }}</a></li>
