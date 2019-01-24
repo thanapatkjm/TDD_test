@@ -34,7 +34,8 @@ def creating(request):
     add.save()
     add_des = Description(animal=add,food=request.POST['input_food'],habitat=request.POST['input_habitat'],legs=request.POST['input_legs'])
     add_des.save()
-    return HttpResponseRedirect(reverse('animal:index'))
+    # return HttpResponseRedirect(reverse('animal:index'))
+    return HttpResponseRedirect(reverse('animal:test'))
 
 def page(request,page_number):
     template = loader.get_template("index.html")
