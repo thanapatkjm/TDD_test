@@ -47,23 +47,13 @@ def edit_descript(request,page_number):
 
 def editing(request,page_number):
     animal_edit = get_object_or_404(Animal, pk=page_number)
-    # if(request.POST['check_food']=='on'):
     animal_edit.description.food=request.POST['input_food']
-    # if(request.POST['check_habitat']=='on'):
     animal_edit.description.habitat = request.POST['input_habitat']
-    # if(request.POST['check_legs']=='on'):
     animal_edit.description.legs = request.POST['input_legs']
     animal_edit.description.save()
     return HttpResponseRedirect(reverse('animal:detail', args=(page_number,)))
 
 def detail(request,page_number):
     latest_animal_name = get_object_or_404(Animal, pk=page_number)
-    # latest_animal_name=Animal.objects.order_by("animal_name")
-    # output = ', '.join([q.animal_name for q in latest_detail])
-    # template = loader.get_template('index.html')  # load template from app / template
-    # context = {
-    #     'latest_animal_name': latest_animal_name,
-    # } # making a dictionary
-    # return HttpResponse(template.render(context, request))
     return render(request, 'detail.html', {'latest_animal_name': latest_animal_name})
 # Create your views here.

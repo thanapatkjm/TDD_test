@@ -5,14 +5,14 @@
 {% csrf_token %}
 <u><h1>Select what do you want to edit.</h1></u>
 <h2>Name : {{ animal_num.animal_name }}</h2>
-    <li><input type="checkbox" name="check_food"  > food    :  <input type="TextInput"
+    <li>food    :  <input type="TextInput"
         name="input_food" value="{{ animal_num.description.food }}"></li>
-    <li><input type="checkbox" name="check_habitat" '> habitat :  <input type="TextInput"
+    <li>habitat :  <input type="TextInput"
         name="input_habitat" value="{{ animal_num.description.habitat }}"></li>
-    <li><input type="checkbox" name="check_legs" > legs    :  <input type="TextInput"
+    <li>legs    :  <input type="TextInput"
         name="input_legs" value="{{ animal_num.description.legs }}"></li>
 <h1></h1>
-<input type="submit" value="Submit">
+<input type="submit" value="sub">
 <h1></h1>
 </form>
 
