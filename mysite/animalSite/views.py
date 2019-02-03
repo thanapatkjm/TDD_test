@@ -6,9 +6,9 @@ from django.urls import reverse
 
 from .models import Animal, Description
 
-def test(request):
-    list_animal_name=Animal.objects.order_by("animal_name")
-    return render(request, 'testInput.html',{'list_animal_name': list_animal_name})
+def table(request):
+    data = Animal.objects.order_by('pk')
+    return render(request, 'table.html', {'data':data})
 
 def test_delete(request):
     list_animal_name=Animal.objects.order_by("animal_name")
@@ -16,7 +16,7 @@ def test_delete(request):
 
 def deleting(request):
     Animal.objects.get(pk=request.POST['radio']).delete()
-    return HttpResponseRedirect(reverse('animal:test'))
+    return HttpResponseRedirect(reverse('animal:index'))
 
 def index(request):
     list_animal_name=Animal.objects.order_by("animal_name")
@@ -35,7 +35,7 @@ def creating(request):
     add_des = Description(animal=add,food=request.POST['input_food'],habitat=request.POST['input_habitat'],legs=request.POST['input_legs'])
     add_des.save()
     # return HttpResponseRedirect(reverse('animal:index'))
-    return HttpResponseRedirect(reverse('animal:test'))
+    return HttpResponseRedirect(reverse('animal:index'))
 
 def page(request,page_number):
     template = loader.get_template("index.html")
@@ -47,9 +47,24 @@ def edit_descript(request,page_number):
 
 def editing(request,page_number):
     animal_edit = get_object_or_404(Animal, pk=page_number)
-    animal_edit.description.food=request.POST['input_food']
-    animal_edit.description.habitat = request.POST['input_habitat']
-    animal_edit.description.legs = request.POST['input_legs']
+    try:
+        edit_f = request.POST['check_food']
+    except:
+        pass
+    else:
+        animal_edit.description.food=request.POST['input_food']
+    try:
+        edit_f = request.POST['check_habitat']
+    except:
+        pass
+    else:
+        animal_edit.description.habitat = request.POST['input_habitat']
+    try:
+        edit_f = request.POST['check_food']
+    except:
+        pass
+    else:
+        animal_edit.description.legs = request.POST['input_legs']
     animal_edit.description.save()
     return HttpResponseRedirect(reverse('animal:detail', args=(page_number,)))
 
