@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+
 <body>
-<h2>Basic HTML Table</h2>
-<table style="width:100%">
-  <tr>
-    {% for field_name in data %}
-      <th>{{ field_name.get_field }}</th>
-    {% endfor %}
-  </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-  </tr>
-  <tr>
-    <td>John</td>
-    <td>Doe</td>
-    <td>80</td>
-  </tr>
+
+<table border="1">
+    <tr>
+        {% for field in animal_field%}
+            <th>{{field.name}}</th>
+        {% endfor%}
+    </tr>
+    {% for ani in animal_list%}
+    <div style="overflow-x:auto;"></div>
+    <tr>
+        {% for attr in ani%}
+            {% if forloop.counter0 == 1 %}
+                <td><a href="{% url 'animal:show_table_descrip' qst.0 %}">{{attr}}</a></td>
+            {% else %}
+                <td>{{attr}}</td>
+            {% endif %}
+        {% endfor%}
+    </tr>
+    </div>
+    {% endfor%}
+
 </table>
 
 </body>
-</html>

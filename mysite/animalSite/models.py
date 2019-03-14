@@ -15,5 +15,6 @@ class Description(models.Model):
     food = models.TextField()
     habitat = models.TextField()
     legs = models.IntegerField(default=4)
+
     def __str__(self):
         return self.food+" "+self.habitat+" "+str(self.legs)

@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>Body</h1>
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <title>Poll&Choice</title>
+    </head>
+    <body>
+        <h1>{{ quest }}</h1>
+            {% for choice in ch %}
+                <input type="radio" name='radio' value={{ ch.id }} > <a>{{ choice }}</a>
+            {% endfor %}
+
+    </body>
 </html>

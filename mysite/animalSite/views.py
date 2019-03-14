@@ -7,8 +7,9 @@ from django.urls import reverse
 from .models import Animal, Description
 
 def table(request):
-    data = Animal.objects.order_by('pk')
-    return render(request, 'table.html', {'data':data})
+    animal_field = Animal._meta.fields
+    animal_list = Animal.values_list().all()
+    return render(request, 'table.html', {'animal_field':animal_field,"animal_list":animal_list})
 
 def test_delete(request):
     list_animal_name=Animal.objects.order_by("animal_name")
@@ -47,24 +48,9 @@ def edit_descript(request,page_number):
 
 def editing(request,page_number):
     animal_edit = get_object_or_404(Animal, pk=page_number)
-    try:
-        edit_f = request.POST['check_food']
-    except:
-        pass
-    else:
-        animal_edit.description.food=request.POST['input_food']
-    try:
-        edit_f = request.POST['check_habitat']
-    except:
-        pass
-    else:
-        animal_edit.description.habitat = request.POST['input_habitat']
-    try:
-        edit_f = request.POST['check_food']
-    except:
-        pass
-    else:
-        animal_edit.description.legs = request.POST['input_legs']
+    animal_edit.description.food=request.POST['input_food']
+    animal_edit.description.habitat = request.POST['input_habitat']
+    animal_edit.description.legs = request.POST['input_legs']
     animal_edit.description.save()
     return HttpResponseRedirect(reverse('animal:detail', args=(page_number,)))
 
@@ -72,3 +58,6 @@ def detail(request,page_number):
     latest_animal_name = get_object_or_404(Animal, pk=page_number)
     return render(request, 'detail.html', {'latest_animal_name': latest_animal_name})
 # Create your views here.
+
+def show_table_descrip(request,animal_id):
+    
